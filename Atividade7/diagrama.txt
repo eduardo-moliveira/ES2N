@@ -1,0 +1,51 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Usuario {
+	- codigo: int
+	- nome: String
+	- email: String
+	- senha: String
+
+	+ getCodigo(): int
+	+ setCodigo(codigo: int): void
+	+ getNome(): String
+	+ setNome(nome: String): void
+	+ getEmail(): String
+	+ setEmail(email: String): void
+	+ getSenha(): String
+	+ setSenha(senha: String): void
+
+	+ adicionarContato(contato: Contato): void
+	+ removerContato(contato: Contato): void
+}
+
+class Contato {
+	- nome: String
+	- telefone: String
+	+ getNome(): String
+	+ setNome(nome: String): void
+	+ getTelefone(): String
+	+ setTelefone(telefone: String): void
+	+ adicionarEmail(email: Email, tipo: TipoEmail): void
+	+ removerEmail(tipo: TipoEmail): void
+}
+
+class Email {
+	- endereco: String
+	+ getEndereco(): String
+	+ setEndereco(endereco: String): void
+}
+
+class TipoEmail {
+	- descricao: String
+	+ getDescricao(): String
+	+ setDescricao(descricao: String): void
+}
+Usuario "1" -- "0..*" Contato
+Contato "[tipoEmail]" -- "0..1" Email
+note on link: mínimo 1 e-mail no total
+Email "*" -- "1" TipoEmail
+
+@enduml
