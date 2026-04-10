@@ -1,0 +1,23 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Produto {
+	- nome: String
+	- unidadeCompra: String
+}
+
+class ItemListaCompra {
+	- quantidadeMes: double
+	- quantidadeCompra: double
+	- precoEstimado: double
+}
+
+class ListaCompra {
+	+ totalEstimado(): double
+}
+
+ListaCompra "1" *-- "1..*" ItemListaCompra
+ItemListaCompra "*" --> "1" Produto
+
+@enduml
