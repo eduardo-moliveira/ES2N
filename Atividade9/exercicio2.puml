@@ -1,0 +1,46 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Cliente {
+	- cpf: String
+	- email: String
+	- nome: String
+	- telefone: String
+	- endereco: String
+}
+
+class Voo {
+	- data: Date
+	- hora: Time
+	- cidadeOrigem: String
+	- aeroportoOrigem: String
+	- cidadeDestino: String
+	- aeroportoDestino: String
+}
+
+class Reserva {
+	- preco: double
+	- assento: String
+	- checkinRealizado: boolean
+	+ reservar()
+	+ realizarCheckin()
+	+ cancelar()
+}
+
+class ReservaIda {}
+
+class ReservaVolta {}
+
+enum FormaPagamento {
+	CREDITO
+	DEBITO
+	PIX
+}
+
+Cliente "1" -- "0..*" Reserva : realiza >
+Reserva "0..*" -right- "1" Voo : referente a >
+Reserva <|-- ReservaIda
+Reserva <|-- ReservaVolta
+
+@enduml
